@@ -1,0 +1,39 @@
+@model Usuario
+@{
+    ViewData["Title"] = "Registrar Usuario";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form action="Registrar" method="post">
+    @* primer campo *@
+    <div class="form-group">
+        <label for="Email">Correo Electronico</label>
+        <input type="text" class="form-control" id="Email" name="Email" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div><br>
+
+    @* segundo campo *@
+    <div>
+        <label for="Password">Password</label>
+        <input type="pasword" class="form-control" id="Password" name="Password" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+<div>
+    @if(ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-sucess">@ViewBag.Mensaje</div>
+    }
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
